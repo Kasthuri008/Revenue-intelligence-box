@@ -1,0 +1,575 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="data:,">
+  <title>SpendNest Revenue Intelligence Inbox</title>
+  
+  <!-- Modern Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Custom Design System -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <div class="app-layout">
+    <!-- Left-Side Vertical Sidebar -->
+    <aside class="app-sidebar" id="app-sidebar">
+      <!-- Sidebar Header with Logo and App Name -->
+      <div class="sidebar-header">
+        <div class="sidebar-brand-box">
+          <div class="sidebar-logo">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="24" height="24" rx="6" fill="url(#logo-grad)"/>
+              <path d="M7 16.5L12 7.5L17 16.5H7Z" stroke="white" stroke-width="2" stroke-linejoin="round"/>
+              <circle cx="12" cy="13.5" r="1.5" fill="white"/>
+              <defs>
+                <linearGradient id="logo-grad" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#06b6d4"/>
+                  <stop offset="1" stop-color="#6366f1"/>
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+          <div class="sidebar-brand-info">
+            <div class="sidebar-app-name">Revenue Intelligence Inbox</div>
+            <div class="sidebar-app-tag">SpendNest Platform</div>
+          </div>
+        </div>
+        <button class="sidebar-close-btn" id="sidebar-close-btn" onclick="toggleMobileSidebar(false)" aria-label="Close sidebar navigation">&times;</button>
+      </div>
+
+      <!-- Sidebar Navigation Items -->
+      <nav class="sidebar-nav">
+        <div class="sidebar-nav-heading">MAIN MENU</div>
+        
+        <button class="tab-btn sidebar-nav-item active" data-tab="inbox">
+          <span class="nav-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 12h-6l-2 3h-4l-2-3H2v7a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-7Z"/>
+              <path d="M5.45 5.11 2 12v0a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v0l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/>
+            </svg>
+          </span>
+          <span class="nav-label">Inbox</span>
+        </button>
+
+        <button class="tab-btn sidebar-nav-item" data-tab="brief">
+          <span class="nav-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/>
+              <rect x="8" y="2" width="8" height="4" rx="1" ry="1"/>
+              <path d="M9 12h6"/>
+              <path d="M9 16h6"/>
+              <path d="M9 8h6"/>
+            </svg>
+          </span>
+          <span class="nav-label">Manager Daily Brief</span>
+        </button>
+
+        <button class="tab-btn sidebar-nav-item" data-tab="replay">
+          <span class="nav-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/>
+              <path d="M21 3v5h-5"/>
+              <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/>
+              <path d="M3 21v-5h5"/>
+            </svg>
+          </span>
+          <span class="nav-label">Replay &amp; Audit</span>
+        </button>
+
+        <button class="tab-btn sidebar-nav-item" data-tab="exports">
+          <span class="nav-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/>
+              <path d="m3.3 7 8.7 5 8.7-5"/>
+              <path d="M12 22V12"/>
+            </svg>
+          </span>
+          <span class="nav-label">Exports &amp; Manifest</span>
+        </button>
+
+        <div class="sidebar-nav-heading" style="margin-top:16px;">REFERENCE</div>
+
+        <button class="tab-btn sidebar-nav-item" data-tab="methodology">
+          <span class="nav-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+              <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+            </svg>
+          </span>
+          <span class="nav-label">Methodology</span>
+        </button>
+      </nav>
+
+      <!-- Sidebar Footer with Live Status Badges & Timezone -->
+      <div class="sidebar-footer">
+        <div class="sidebar-status-card">
+          <div class="sidebar-status-header">
+            <span class="status-indicator-dot"></span>
+            <span>SYSTEM AUDIT PILLS</span>
+          </div>
+          <div class="sidebar-status-pills">
+            <span class="badge-pill active" id="pill-records-count">Records: 44</span>
+            <span class="badge-pill" id="pill-transcript-count">Transcripts: 17/44</span>
+            <span class="badge-pill warning" id="pill-override-count">Overrides: 0</span>
+          </div>
+          <div class="sidebar-meta-box">
+            <div class="meta-row"><span class="meta-label">Activity Date:</span> <span class="meta-val">21 Aug 2026</span></div>
+            <div class="meta-row"><span class="meta-label">Timezone:</span> <span class="meta-val">Asia/Kolkata</span></div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Mobile Sidebar Backdrop Overlay -->
+    <div class="sidebar-backdrop" id="sidebar-backdrop" onclick="toggleMobileSidebar(false)"></div>
+
+    <!-- Main Content Area to the Right of the Sidebar -->
+    <div class="app-main-content">
+      <!-- Main Content Top Bar -->
+      <header class="app-topbar">
+        <div class="topbar-left">
+          <button class="mobile-menu-btn" id="mobile-menu-btn" onclick="toggleMobileSidebar(true)" aria-label="Open sidebar menu">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+          </button>
+          <div class="topbar-breadcrumb">
+            <span class="topbar-org">SpendNest</span>
+            <span class="topbar-sep">/</span>
+            <span class="topbar-current" id="topbar-page-title">Inbox</span>
+          </div>
+        </div>
+
+        <div class="topbar-right">
+          <span class="topbar-date-chip">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:5px; vertical-align:middle;"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            21 August 2026 (Asia/Kolkata)
+          </span>
+          <button class="btn-step step-quick-demo" onclick="loadFullDemoState()" title="Instantly load post-update state with all 44 records and preserved overrides">
+            <span>Load Demo State</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- Replay Test Banner (Per DATA_CONTRACT.md Replay Specifications) -->
+      <section class="replay-banner">
+        <div class="replay-left">
+          <span class="replay-title">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-right:6px;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            Replay Test Suite
+          </span>
+          <span class="replay-subtitle">Verify idempotence, revision merge, and preserved manual overrides:</span>
+        </div>
+        
+        <div class="replay-steps-bar">
+          <button class="btn-step step-primary" onclick="runImportStep1()" title="Import 01_initial.json (Revision 1)">
+            <span>1. Initial Import</span>
+          </button>
+          <button class="btn-step" onclick="runImportStep2()" title="Repeat import in shuffled order to verify zero duplicates">
+            <span>2. Duplicate Test</span>
+          </button>
+          <button class="btn-step step-override" onclick="runTestCorrectionStep3()" title="Manually correct M07 route to verify persistence">
+            <span>3. Override M07</span>
+          </button>
+          <button class="btn-step step-update" onclick="runImportStep4()" title="Import 02_update.json (Revision 2 with late transcript for M07)">
+            <span>4. Import Update (Rev 2)</span>
+          </button>
+          <button class="btn-step" onclick="runImportStep5()" title="Attempt re-import of Rev 1 to prove older revisions are ignored">
+            <span>5. Stale Rev 1 Check</span>
+          </button>
+          <button class="btn-step step-reset" onclick="resetAll()" title="Reset to clean slate">
+            <span>Reset</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- Main Container (KPIs are kept at the top of the main area inside view-inbox) -->
+      <main class="main-container">
+
+    <!-- VIEW 1: INBOX & RECORDS TABLE -->
+    <div id="view-inbox" class="view-section">
+      <!-- Top KPIs with Defined Denominators -->
+      <section id="kpi-metrics-container" class="metrics-grid">
+        <!-- Rendered dynamically by app.js -->
+      </section>
+
+      <!-- Search & Filters Control Card -->
+      <section class="controls-card">
+        <div class="filters-group">
+          <!-- Source Type Filter -->
+          <select id="filter-type" class="filter-select">
+            <option value="all">All Source Types (Calls & Meetings)</option>
+            <option value="call">Calls Only (30 selected)</option>
+            <option value="meeting">Meetings Only (14 selected)</option>
+          </select>
+
+          <!-- Route Filter -->
+          <select id="filter-route" class="filter-select">
+            <option value="all">All Route Categories</option>
+            <option value="deal_next_steps">Deal Next Steps</option>
+            <option value="sales_coaching">Sales Coaching</option>
+            <option value="customer_success">Customer Success / Issues</option>
+            <option value="internal_ops">Internal Operations & Training</option>
+            <option value="intake_unreviewed">Intake / No Usable Speech</option>
+          </select>
+
+          <!-- Person Filter (Distinguishing Call Reps vs Meeting Organisers) -->
+          <select id="filter-person" class="filter-select">
+            <option value="all">All Team Members & Organisers</option>
+            <optgroup label="Call Representatives (Actual Callers)">
+              <option value="Arun">Arun (Outbound Rep)</option>
+              <option value="Leela">Leela (Outbound / Inbound Rep)</option>
+              <option value="Meera">Meera (Outbound Rep)</option>
+              <option value="Ravi">Ravi (Outbound Rep)</option>
+              <option value="Dev">Dev (Outbound Rep)</option>
+              <option value="Kiran">Kiran (Outbound Rep)</option>
+            </optgroup>
+            <optgroup label="Meeting Organisers (Calendar Owner only)">
+              <option value="team08@example.com">team08@example.com</option>
+              <option value="team09@example.com">team09@example.com</option>
+              <option value="team10@example.com">team10@example.com</option>
+              <option value="team11@example.com">team11@example.com</option>
+              <option value="team12@example.com">team12@example.com</option>
+              <option value="team13@example.com">team13@example.com</option>
+              <option value="team14@example.com">team14@example.com</option>
+            </optgroup>
+          </select>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="search-box">
+          <span class="search-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          </span>
+          <input type="text" id="search-input" class="search-input" placeholder="Search account, turn text, rep..." />
+        </div>
+      </section>
+
+      <!-- Records Table Card -->
+      <section class="table-card">
+        <div style="padding:14px 18px; border-bottom:1px solid var(--border-glass); display:flex; justify-content:space-between; align-items:center;">
+          <h3 style="font-size:14px; font-weight:700; color:white;">Inbox Activity Feed</h3>
+          <span id="table-count-label" style="font-size:12px; color:var(--text-dim);">Loading records...</span>
+        </div>
+
+        <div class="table-responsive">
+          <table class="records-table">
+            <thead>
+              <tr>
+                <th>Record Ref</th>
+                <th>Source Type</th>
+                <th>Account / Interaction</th>
+                <th>Person & Role</th>
+                <th>Time (IST)</th>
+                <th>Transcript</th>
+                <th>Assigned Route</th>
+              </tr>
+            </thead>
+            <tbody id="records-table-body">
+              <!-- Rendered dynamically by app.js -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+
+    <!-- VIEW 2: MANAGER DAILY BRIEF -->
+    <div id="view-brief" class="view-section" style="display:none;">
+      <div class="brief-container">
+        
+        <div class="brief-banner">
+          <h1>Manager Daily Brief & Action Digest</h1>
+          <p>Synthesized operational, commercial and coaching intelligence for <strong>21 August 2026 (Asia/Kolkata)</strong>. Based on 44 selected interactions (18 transcripts, 26 silent/background records).</p>
+        </div>
+
+        <div class="brief-grid">
+          
+          <!-- Urgent Operational & Bug Alerts -->
+          <div class="brief-card" style="border-top:3px solid #f43f5e;">
+            <div class="brief-card-header">
+              <div class="brief-card-icon" style="background:rgba(244,63,94,0.15); color:#f43f5e;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+              </div>
+              <div class="brief-card-title">Critical Operational & Bug Alerts</div>
+            </div>
+
+            <div class="brief-item">
+              <div class="brief-item-title">
+                <span>Willowfield Trust &bull; Save Changes Bug (M07)</span>
+                <span class="rev-tag rev-2">Rev 2 Update</span>
+              </div>
+              <div class="brief-item-desc">
+                Customer A screen-shared a reproducible UI bug: editing an event payment description and clicking "Save changes" fails to persist; the older text remains displayed.
+              </div>
+              <div class="brief-item-citation">Evidence: M07 Turn 2 & Turn 3 &bull; Action: Urgent engineering ticket; notify Customer A today.</div>
+            </div>
+
+            <div class="brief-item">
+              <div class="brief-item-title">
+                <span>Brookmint Holdings &bull; Expired Reset Token (M09)</span>
+                <span class="route-badge route-cs">Auth Blocker</span>
+              </div>
+              <div class="brief-item-desc">
+                Customer A attempted password reset on live screen share, but token immediately showed "expired". Also raised serious security concern: shared accounts mailbox gives AP officer unauthorized admin control.
+              </div>
+              <div class="brief-item-citation">Evidence: M09 Turn 9 & Turn 15 &bull; Action: Identity team token fix; configure individual admin login.</div>
+            </div>
+
+            <div class="brief-item">
+              <div class="brief-item-title">
+                <span>Cedarwave Distribution &bull; Card Migration & Retention (M04)</span>
+                <span class="route-badge route-cs">Retention Risk</span>
+              </div>
+              <div class="brief-item-desc">
+                Customer has INR 1.3 crore bank credit line and resists another prepaid program. Exploring SpendNest post-settlement credit feed to avoid churn. Department user migration also broken.
+              </div>
+              <div class="brief-item-citation">Evidence: M04 Turn 32 & Turn 41 &bull; Action: Confirm bank-card feed feasibility; hold admin cleanup call.</div>
+            </div>
+          </div>
+
+          <!-- High-Value Partner & Deal Follow-ups -->
+          <div class="brief-card" style="border-top:3px solid #10b981;">
+            <div class="brief-card-header">
+              <div class="brief-card-icon" style="background:rgba(16,185,129,0.15); color:#10b981;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+              </div>
+              <div class="brief-card-title">High-Priority Commercial Follow-ups</div>
+            </div>
+
+            <div class="brief-item">
+              <div class="brief-item-title">
+                <span>Willowbank Advisory &bull; Referral Partnership (C07)</span>
+                <span class="route-badge route-deal">High Potential</span>
+              </div>
+              <div class="brief-item-desc">
+                Mr Aditya incorporates companies overseas and routinely refers digital bank accounts. Agreed to review SpendNest virtual accounts proposal via chat and speak Monday.
+              </div>
+              <div class="brief-item-citation">Evidence: C07 Quote ("Yes, that is something we normally do...") &bull; Action: Dev to send proposal; call Monday.</div>
+            </div>
+
+            <div class="brief-item">
+              <div class="brief-item-title">
+                <span>Mapletrail Services &bull; AR Automation (M06)</span>
+                <span class="route-badge route-deal">High Volume</span>
+              </div>
+              <div class="brief-item-desc">
+                Branch finance handles 260-520 invoices/month in foreign currency. Heavy manual disputes and uncollected expense recoveries. Strongly interested in automated reminders; raised security questions.
+              </div>
+              <div class="brief-item-citation">Evidence: M06 Turn 10 & Turn 23 &bull; Action: Send SOC2 security whitepaper and AR pilot proposal.</div>
+            </div>
+
+            <div class="brief-item">
+              <div class="brief-item-title">
+                <span>Harborpath Advisory &bull; US Virtual Accounts (M01)</span>
+                <span class="route-badge route-deal">Channel Lead</span>
+              </div>
+              <div class="brief-item-desc">
+                Partner A evaluated remote account opening. Rep successfully established qualification boundary (registered US entities only; no consumer accounts).
+              </div>
+              <div class="brief-item-citation">Evidence: M01 Turn 2 & Turn 4 &bull; Action: Send partner kit with US entity checklist.</div>
+            </div>
+          </div>
+
+          <!-- Team Coaching & Execution Priorities -->
+          <div class="brief-card" style="border-top:3px solid #f59e0b;">
+            <div class="brief-card-header">
+              <div class="brief-card-icon" style="background:rgba(245,158,11,0.15); color:#f59e0b;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+              </div>
+              <div class="brief-card-title">Sales Coaching & Outreach Hygiene</div>
+            </div>
+
+            <div class="brief-item">
+              <div class="brief-item-title">
+                <span>Arun &bull; Harborlight Advisory Cold Call (C01)</span>
+                <span class="route-badge route-coach">Coaching</span>
+              </div>
+              <div class="brief-item-desc">
+                Pranav reacted aggressively to unexpected cold call on personal work phone. Rep prolonged defensive explanation instead of executing clean, respectful disengagement.
+              </div>
+              <div class="brief-item-citation">Evidence: C01 Quote &bull; Action: Suppress Harborlight phone; coach Arun on 5-second graceful exit.</div>
+            </div>
+
+            <div class="brief-item">
+              <div class="brief-item-title">
+                <span>Meera &bull; Prospecting Rule Adherence (C09)</span>
+                <span class="route-badge route-coach">Boundary Rule</span>
+              </div>
+              <div class="brief-item-desc">
+                Mr Vedant directed Meera to Business Head Mr Rishabh on LinkedIn, but gave strict prohibition: "No, please don't use my name." Must ensure rep does NOT cite Vedant when messaging Rishabh.
+              </div>
+              <div class="brief-item-citation">Evidence: C09 Quote &bull; Action: Audit LinkedIn outreach draft to confirm zero name-dropping.</div>
+            </div>
+
+            <div class="brief-item">
+              <div class="brief-item-title">
+                <span>Internal Billing Operations & Training (M10)</span>
+                <span class="route-badge route-ops">Ops Training</span>
+              </div>
+              <div class="brief-item-desc">
+                Training session established critical SOP: after account is frozen on Day 10, manual payment clearance MUST be accompanied by manual billing date advance; otherwise future billing cycles stay desynced.
+              </div>
+              <div class="brief-item-citation">Evidence: M10 Turn 17 & Turn 18 &bull; Action: Publish manual unfreeze SOP to Operations knowledge base.</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- VIEW 3: REPLAY & AUDIT CONSOLE -->
+    <div id="view-replay" class="view-section" style="display:none;">
+      <div class="export-panel">
+        <h2 style="font-family:var(--font-display); font-size:20px; color:white; margin-bottom:8px;">Replay Test Harness & Contract Assertions</h2>
+        <p style="color:var(--text-muted); font-size:13px; margin-bottom:20px;">
+          Demonstrate compliance with <code>DATA_CONTRACT.md</code>: record identity, revision replacement, duplicate safety, and preserved manual overrides across updates and restarts.
+        </p>
+
+        <!-- Stepper Visual -->
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:12px; margin-bottom:24px;">
+          <div style="background:rgba(255,255,255,0.03); border:1px solid var(--border-glass); padding:14px; border-radius:8px;">
+            <div style="font-size:11px; color:#38bdf8; font-weight:700;">STEP 1</div>
+            <div style="font-size:14px; font-weight:600; color:white; margin:4px 0;">Initial Delivery</div>
+            <div style="font-size:11.5px; color:#94a3b8;">44 Records, 17 Usable Transcripts, M07 withheld.</div>
+          </div>
+          <div style="background:rgba(255,255,255,0.03); border:1px solid var(--border-glass); padding:14px; border-radius:8px;">
+            <div style="font-size:11px; color:#34d399; font-weight:700;">STEP 2</div>
+            <div style="font-size:14px; font-weight:600; color:white; margin:4px 0;">Repeat Ingestion</div>
+            <div style="font-size:11.5px; color:#94a3b8;">Order shuffled. 0 duplicate records created. Total remains 44.</div>
+          </div>
+          <div style="background:rgba(255,255,255,0.03); border:1px solid var(--border-glass); padding:14px; border-radius:8px;">
+            <div style="font-size:11px; color:#fbbf24; font-weight:700;">STEP 3</div>
+            <div style="font-size:14px; font-weight:600; color:white; margin:4px 0;">Manual Override</div>
+            <div style="font-size:11.5px; color:#94a3b8;">Manager changes M07 route. Flagged as user-edited.</div>
+          </div>
+          <div style="background:rgba(255,255,255,0.03); border:1px solid var(--border-glass); padding:14px; border-radius:8px;">
+            <div style="font-size:11px; color:#c084fc; font-weight:700;">STEP 4</div>
+            <div style="font-size:14px; font-weight:600; color:white; margin:4px 0;">Update Batch (Rev 2)</div>
+            <div style="font-size:11.5px; color:#94a3b8;">M07 receives late transcript. Override preserved! Total 44, Transcripts 18.</div>
+          </div>
+          <div style="background:rgba(255,255,255,0.03); border:1px solid var(--border-glass); padding:14px; border-radius:8px;">
+            <div style="font-size:11px; color:#fb7185; font-weight:700;">STEP 5</div>
+            <div style="font-size:14px; font-weight:600; color:white; margin:4px 0;">Stale Rev 1 Rejection</div>
+            <div style="font-size:11.5px; color:#94a3b8;">Stale Rev 1 ignored. M07 retains Rev 2 and manual route.</div>
+          </div>
+        </div>
+
+        <h3 style="font-size:13px; font-weight:700; color:var(--brand-cyan); margin-bottom:10px; text-transform:uppercase;">Live Replay Audit Log</h3>
+        <div id="replay-log-console" class="log-console">
+          <!-- Populated by app.js -->
+        </div>
+      </div>
+    </div>
+
+    <!-- VIEW 4: EXPORTS & MANIFEST -->
+    <div id="view-exports" class="view-section" style="display:none;">
+      <div class="export-panel">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px; margin-bottom:18px;">
+          <div>
+            <h2 style="font-family:var(--font-display); font-size:20px; color:white;">Generated Exports & Machine-Readable Manifest</h2>
+            <p style="color:var(--text-muted); font-size:13px; margin-top:2px;">
+              Every active record produces an organized output file. Manifest maps source ID, applied revision, route, file path, and override flags.
+            </p>
+          </div>
+
+          <div style="display:flex; gap:10px;">
+            <button class="btn-action-primary" onclick="downloadManifestJSON()">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:6px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              <span>Download manifest.json</span>
+            </button>
+            <button class="btn-step" onclick="downloadManifestCSV()">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:6px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              <span>Download manifest.csv</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Directory Structure Breakdown -->
+        <div style="background:rgba(255,255,255,0.02); border:1px solid var(--border-glass); border-radius:8px; padding:16px; margin-bottom:20px;">
+          <h4 style="font-size:12px; font-weight:700; color:var(--brand-cyan); text-transform:uppercase; margin-bottom:8px;">Export File Organization</h4>
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:10px; font-family:monospace; font-size:11.5px; color:#cbd5e1;">
+            <div>/exports/sales_coaching/ (C01, C06, C10)</div>
+            <div>/exports/deal_next_steps/ (C03, C05, C07, C08, C09, M01, M03, M06)</div>
+            <div>/exports/customer_success/ (M04, M07, M09)</div>
+            <div>/exports/internal_ops/ (M02, M10)</div>
+            <div>/exports/intake_unreviewed/ (M05, M08, M11-M14, B01-B20)</div>
+            <div>/exports/manager_brief_2026-08-21.md</div>
+          </div>
+        </div>
+
+        <h4 style="font-size:12px; font-weight:700; color:white; margin-bottom:6px;">Manifest JSON Live Preview:</h4>
+        <pre id="manifest-json-preview" class="manifest-preview"></pre>
+      </div>
+    </div>
+
+    <!-- VIEW 5: METHODOLOGY & DATA DICTIONARY -->
+    <div id="view-methodology" class="view-section" style="display:none;">
+      <div class="export-panel">
+        <h2 style="font-family:var(--font-display); font-size:20px; color:white; margin-bottom:12px;">Data Methodology, Denominators & Boundaries</h2>
+        
+        <div style="display:flex; flex-direction:column; gap:16px; font-size:13px; color:#cbd5e1; line-height:1.6;">
+          <div style="background:rgba(255,255,255,0.02); border:1px solid var(--border-glass); border-radius:8px; padding:16px;">
+            <h3 style="font-size:14px; color:#38bdf8; margin-bottom:6px;">1. Record Identity & Deduplication Rule</h3>
+            <p>Per <code>DATA_CONTRACT.md</code>, record identity is strictly the 2-tuple <code>(source_type, source_id)</code>. Names, record_ref and array positions are non-unique conveniences. When an incoming record has a higher revision (Rev 2 > Rev 1), its source payload is updated in full without inflating activity counts. When a lower or equal revision arrives, it is ignored.</p>
+          </div>
+
+          <div style="background:rgba(255,255,255,0.02); border:1px solid var(--border-glass); border-radius:8px; padding:16px;">
+            <h3 style="font-size:14px; color:#34d399; margin-bottom:6px;">2. Explicit Metrics & Denominators</h3>
+            <ul style="padding-left:20px; margin-top:6px;">
+              <li><strong>Selected Records (44):</strong> The complete sample of 30 calls and 14 meetings. Activity is restricted to 21 August 2026 Asia/Kolkata.</li>
+              <li><strong>Usable Transcript Coverage (17/44 -> 18/44, 40.9%):</strong> Defined strictly as records with non-empty text (calls with transcript string, meetings with non-empty turns array). Denominator is total 44 records.</li>
+              <li><strong>Call Connection Rate (33.3%):</strong> Calculated as calls with <code>is_connected = true</code> (10) divided by calls with non-null <code>is_connected</code> status (30). Labelled as source-reported classification.</li>
+            </ul>
+          </div>
+
+          <div style="background:rgba(255,255,255,0.02); border:1px solid var(--border-glass); border-radius:8px; padding:16px;">
+            <h3 style="font-size:14px; color:#fbbf24; margin-bottom:6px;">3. Distinction: Call Reps vs. Meeting Organisers</h3>
+            <p>Call reps (Arun, Leela, Meera, Ravi, Dev, Kiran) actively dialled prospects. In contrast, meeting organisers (team08-team14) are calendar owners who may not be attendees or salespersons. The application separates them in filters and reporting.</p>
+          </div>
+
+          <div style="background:rgba(255,255,255,0.02); border:1px solid var(--border-glass); border-radius:8px; padding:16px;">
+            <h3 style="font-size:14px; color:#fb7185; margin-bottom:6px;">4. Deliberate Boundaries & Honest Uncertainty</h3>
+            <p>No authoritative CRM deal values, account history, or employee directories are provided. The application does not invent pipeline numbers or unverified corporate affiliations. Unrecorded background calls are kept in an intake state without fabricated conclusions.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+    </div><!-- /.app-main-content -->
+  </div><!-- /.app-layout -->
+
+  <!-- Slide-Over Detail Drawer (Evidence Inspector) -->
+  <div id="drawer-backdrop" class="drawer-backdrop" onclick="closeDrawer()"></div>
+  <aside id="detail-drawer" class="detail-drawer">
+    <div class="drawer-header">
+      <div class="drawer-title-group">
+        <h2 id="drawer-title">Record Details</h2>
+        <p id="drawer-meta">Identity and Revision</p>
+      </div>
+      <button class="btn-close" onclick="closeDrawer()">&times;</button>
+    </div>
+    
+    <div id="drawer-body" class="drawer-body">
+      <!-- Populated dynamically by app.js openDrawer() -->
+    </div>
+  </aside>
+
+  <!-- Toast Notification -->
+  <div id="toast-notification" style="position:fixed; bottom:24px; right:24px; background:#1e293b; color:white; border:1px solid #06b6d4; padding:12px 20px; border-radius:8px; font-size:13px; font-weight:600; box-shadow:0 10px 25px rgba(0,0,0,0.5); z-index:999; opacity:0; transform:translateY(-20px); transition:all 0.3s ease; pointer-events:none;">
+    Action successful
+  </div>
+
+  <!-- Analytical Knowledge Base & Application Logic -->
+  <script src="data_store.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
